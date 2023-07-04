@@ -1,6 +1,6 @@
 #pragma once
-#include <cstdint>
 #include <array>
+#include <cstdint>
 #include "x86_instruction.hpp"
 class InstructionGenerator {
 public:
@@ -11,5 +11,7 @@ public:
     uint8_t value3 = value >> 24 & 0b11111111;
     return {Instruction::MOV_EAX, value0, value1, value2, value3};
   }
-  static std::array<uint8_t, 1> generateRet() { return {Instruction::RET}; }
+  static std::array<uint8_t, 1> generateRet() {
+    return {Instruction::RET};
+  }
 };
