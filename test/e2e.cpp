@@ -9,7 +9,7 @@
 #include "../src/executable_memory.hpp"
 TEST(jit_e2e, t1) {
   ExecutableMemory memory;
-  memory.insert(InstructionGenerator::generateMovEAX(42));
+  memory.insert(InstructionGenerator::generateMovEAX(-42));
   memory.insert(InstructionGenerator::generateRet());
   void *jitPtr = mmap(nullptr, 4096, PROT_READ | PROT_EXEC | PROT_WRITE,
                       MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
@@ -17,5 +17,5 @@ TEST(jit_e2e, t1) {
   typedef uint32_t(*func)() ;
   func f = (func) jitPtr;
   uint32_t returnValue = f();
-  ASSERT_EQ(42, returnValue);
+  ASSERT_EQ(-42, returnValue);
 }
