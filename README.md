@@ -5,3 +5,6 @@
 * copy executable code to executable memory
 * change type of executable memory to a normal function
 * call JIT function
+
+### x86 instruction set
+https://www.felixcloutier.com/x86/

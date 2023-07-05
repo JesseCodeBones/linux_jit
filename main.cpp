@@ -3,16 +3,17 @@
 #include <cstring>
 #include <iostream>
 #include <sys/mman.h>
+#include "src/x86_instruction.hpp"
 #include "src/x86_instruction_generator.hpp"
 int main(int, char **) {
   std::array<uint8_t, 6> executable{};
-  const auto jit1 = InstructionGenerator::generateMovEAX(0xffff);
+  const auto jit1 = InstructionGenerator::MovE_RD(Instruction::MOV_AX,0xffff);
   uint32_t pos = 0;
   for (uint8_t code : jit1) {
     executable[pos] = code;
     pos++;
   }
-  const auto jit2 = InstructionGenerator::generateRet();
+  const auto jit2 = InstructionGenerator::Ret();
   for (uint8_t code : jit2) {
     executable[pos] = code;
     pos++;
